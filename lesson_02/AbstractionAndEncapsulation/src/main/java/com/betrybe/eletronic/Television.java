@@ -1,9 +1,9 @@
 package com.betrybe.eletronic;
 
-public class Television {
+class Television {
   int MAX_VOLUME = 30;
   int volume = 0;
-  public boolean isOn = false;
+  boolean isOn = false;
 
   String brand;
   String model;
@@ -14,12 +14,12 @@ public class Television {
     this.size = size;
   }
 
-  public void tunOn() {
+  void tunOn() {
     System.out.println("Ligando televisão...");
     this.isOn = true;
   }
 
-  public void turnOff() {
+  void turnOff() {
     System.out.println("Desligando televisão...");
     this.isOn = false;
   }
