@@ -1,7 +1,12 @@
 package com.betrybe.eletronic;
 
 public class Television {
-  public Television() {
-    System.out.println("Construtor da classe television sendo executado...");
+  String brand;
+  String model;
+  int size;
+  public Television(String brand, String model, int size) {
+    this.brand = brand;
+    this.model = model;
+    this.size = size;
   }
 }
