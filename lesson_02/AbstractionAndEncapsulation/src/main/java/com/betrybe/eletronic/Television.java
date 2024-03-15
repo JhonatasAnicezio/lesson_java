@@ -8,10 +8,15 @@ class Television {
   private String brand;
   private String model;
   private int size;
+  private static double INCH_TO_CM = 2.54;
   public Television(String brand, String model, int size) {
     this.brand = brand;
     this.model = model;
     this.size = size;
+  }
+
+  public static double convetToCentimeters(double inches) {
+    return inches * INCH_TO_CM;
   }
 
   void tunOn() {
