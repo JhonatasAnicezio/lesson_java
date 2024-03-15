@@ -1,13 +1,13 @@
 package com.betrybe.eletronic;
 
 class Television {
-  int MAX_VOLUME = 30;
-  int volume = 0;
-  boolean isOn = false;
+  private int MAX_VOLUME = 30;
+  private int volume = 0;
+  private boolean isOn = false;
 
-  String brand;
-  String model;
-  int size;
+  private String brand;
+  private String model;
+  private int size;
   public Television(String brand, String model, int size) {
     this.brand = brand;
     this.model = model;
