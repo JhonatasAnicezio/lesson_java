@@ -12,5 +12,13 @@ public class Aplication {
     System.out.println(television.getVolume());
 
     System.out.println(television.info());
+
+    System.out.println("Modelo antigo:");
+    System.out.println(television.getModel());
+
+    television.setModel("LCD-Ultra");
+
+    System.out.println("Modelo novo:");
+    System.out.println(television.getModel());
   }
 }
