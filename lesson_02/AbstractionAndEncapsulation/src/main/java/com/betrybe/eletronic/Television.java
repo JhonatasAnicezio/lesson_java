@@ -42,6 +42,10 @@ class Television {
     }
   }
 
+  public void setModel(String model) {
+    this.model = model;
+  }
+
   public boolean isOn() {
     return isOn;
   }
