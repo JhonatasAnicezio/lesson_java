@@ -1,6 +1,8 @@
 package com.betrybe.eletronic;
 
 public class Television {
+  boolean isOn = false;
+
   String brand;
   String model;
   int size;
