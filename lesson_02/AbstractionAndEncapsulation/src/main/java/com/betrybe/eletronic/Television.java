@@ -11,4 +11,20 @@ public class Television {
     this.model = model;
     this.size = size;
   }
+
+  public void tunOn() {
+    System.out.println("Ligando televisão...");
+    this.isOn = true;
+  }
+
+  public void turnOff() {
+    System.out.println("Desligando televisão...");
+    this.isOn = false;
+  }
+
+  public String info() {
+    return "Marca: %s, Modelo: %s, Tamanho: %d, Ligada: %b".formatted(
+      brand, model, size, isOn
+    );
+  }
 }
