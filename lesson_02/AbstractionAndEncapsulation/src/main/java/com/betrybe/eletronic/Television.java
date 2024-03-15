@@ -1,7 +1,7 @@
 package com.betrybe.eletronic;
 
 class Television {
-  private int MAX_VOLUME = 30;
+  private static int MAX_VOLUME = 30;
   private int volume = 0;
   private boolean isOn = false;
 
