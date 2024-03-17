@@ -4,11 +4,14 @@ public class Car {
   private String MARCA;
   private String MODELO;
   private int ANO;
+  private static int contador = 0;
 
   public Car(String MARCA, String MODELO, int ANO) {
     this.MARCA = MARCA;
     this.MODELO = MODELO;
     this.ANO = ANO;
+
+    contador++;
   }
 
   public void exibirInformacoes() {
@@ -27,4 +30,7 @@ public class Car {
     return ANO;
   }
 
+  public static int quantidadeDeCarros() {
+    return contador;
+  }
 }
