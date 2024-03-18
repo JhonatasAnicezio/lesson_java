@@ -1,5 +1,4 @@
 package com.betrybe.core;
 
-public class ContaPoupanca {
-
+public class ContaPoupanca extends Conta {
 }

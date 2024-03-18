@@ -1,5 +1,5 @@
 package com.betrybe.core;
 
-public class ConcaCorrente {
+public class ConcaCorrente extends Conta {
 
 }
