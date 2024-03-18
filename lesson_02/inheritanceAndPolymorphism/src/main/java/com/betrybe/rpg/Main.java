@@ -3,11 +3,15 @@ package com.betrybe.rpg;
 public class Main {
 
   public static void main(String[] args) {
-    Warrior warrior = new Warrior();
-    warrior.setName("Aragon");
-    warrior.setRace("Humano");
-    warrior.setWeapon("Espada");
+    Warrior player1 = new Warrior();
+    PlayableCharacter player2 = new Warrior();
 
-    System.out.println(warrior.getName() + " é da raça " + warrior.getRace() + " e utiliza " + warrior.getWeapon());
+    addInformation(player1);
+    addInformation(player2);
+  }
+
+  public static void addInformation(PlayableCharacter player) {
+      player.setName("Aragon");
+      player.setRace("Humano");
   }
 }
