@@ -6,4 +6,12 @@ public class ContaPoupanca extends Conta {
   public void sacar(double valor) {
     super.sacar(valor + 2);
   }
+
+  public double simularRendimento() {
+    return this.saldo + this.saldo * 0.05;
+  }
+
+  public double simularRendimento(double taxa) {
+    return this.saldo + this.saldo * 0.05;
+  }
 }
