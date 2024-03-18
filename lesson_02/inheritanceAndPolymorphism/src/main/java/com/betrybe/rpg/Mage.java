@@ -10,4 +10,9 @@ public class Mage extends PlayableCharacter {
   public void setSpell(String spell) {
     this.spell = spell;
   }
+
+  @Override
+  public void attack() {
+    System.out.println("O mago lança um feitiço");
+  }
 }
