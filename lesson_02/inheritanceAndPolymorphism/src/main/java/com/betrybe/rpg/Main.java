@@ -11,4 +11,9 @@ public class Main {
     mage.move();
     mage.attack();
   }
+
+  public void moveAndAttack(PlayableCharacter player) {
+    player.move();
+    player.attack();
+  }
 }
