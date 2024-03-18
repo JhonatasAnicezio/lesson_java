@@ -19,4 +19,9 @@ public class Warrior extends PlayableCharacter {
 
     System.out.println(this.getName() + " está usando ataque especial!");
   }
+
+  @Override
+  public void attack() {
+    System.out.println("O guerreiro ataca com sua arma.");
+  }
 }
