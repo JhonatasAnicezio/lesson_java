@@ -10,4 +10,13 @@ public class Warrior extends PlayableCharacter {
   public void setWeapon(String weapon) {
     this.weapon = weapon;
   }
+
+  public void specialAttack() {
+    if (!isAlive) {
+      System.out.println(getName() + " morreu e não pode usar seu ataque especial.");]
+      return;
+    }
+
+    System.out.println(this.getName() + " está usando ataque especial!");
+  }
 }
