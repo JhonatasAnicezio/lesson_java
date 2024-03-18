@@ -13,7 +13,7 @@ public class Warrior extends PlayableCharacter {
 
   public void specialAttack() {
     if (!isAlive) {
-      System.out.println(getName() + " morreu e não pode usar seu ataque especial.");]
+      System.out.println(getName() + " morreu e não pode usar seu ataque especial.");
       return;
     }
 
