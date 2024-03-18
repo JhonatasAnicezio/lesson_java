@@ -1,6 +1,6 @@
 package com.betrybe.core;
 
-public class ConcaCorrente extends Conta {
+public class ContaCorrente extends Conta {
 
   @Override
   public void sacar(double valor) {

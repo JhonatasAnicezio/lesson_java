@@ -12,6 +12,6 @@ public class ContaPoupanca extends Conta {
   }
 
   public double simularRendimento(double taxa) {
-    return this.saldo + this.saldo * 0.05;
+    return this.saldo + this.saldo * taxa;
   }
 }
