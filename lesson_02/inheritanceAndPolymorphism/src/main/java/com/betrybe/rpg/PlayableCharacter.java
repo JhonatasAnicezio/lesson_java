@@ -27,20 +27,10 @@ public class PlayableCharacter {
   }
 
   public void move() {
-    if (!isAlive) {
-      System.out.println("Personagem morreu e não pode se mover.");
-      return;
-    }
-
-    System.out.println(name + " está se movendo!");
+    System.out.println("Personagem está se movendo!");
   }
 
   public void attack() {
-    if (!isAlive) {
-      System.out.println("Personagem morreu e não pode se mover.");
-      return;
-    }
-
-    System.out.println(name + " está atacando!");
+    System.out.println("Personagem está atacando!");
   }
 }
