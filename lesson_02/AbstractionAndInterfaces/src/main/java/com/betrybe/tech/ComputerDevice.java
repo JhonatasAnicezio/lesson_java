@@ -1,6 +1,7 @@
 package com.betrybe.tech;
 
 public abstract class ComputerDevice {
+  public static final double MAX_STORAGE_CAPACITY = 2048.0; // Em GB
   private final String brand;
   private double storageCapacity;
 
