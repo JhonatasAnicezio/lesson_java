@@ -8,6 +8,12 @@ public class Application {
 
     plugDevice(laptop);
     plugDevice(powerBank);
+
+    ComputerDevice genericDevice = new Laptop("Apple", 256.0, 13.3);
+
+    if (genericDevice instanceof Laptop) {
+      Laptop specificLaptop = (Laptop) genericDevice;
+    }
   }
 
   public static void plugDevice(Chargeable chargeable) {
