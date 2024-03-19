@@ -20,4 +20,8 @@ public abstract class ComputerDevice {
 
   // Método abstrato, sem implementação
   public abstract void bootUp();
+
+  public final void shutDown() {
+    System.out.println("Desligando o dispositivo...");
+  }
 }
