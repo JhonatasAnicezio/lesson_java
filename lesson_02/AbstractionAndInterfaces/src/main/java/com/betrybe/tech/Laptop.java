@@ -1,5 +1,5 @@
 package com.betrybe.tech;
 
-public class Laptop {
+public class Laptop extends ComputerDevice {
 
 }
