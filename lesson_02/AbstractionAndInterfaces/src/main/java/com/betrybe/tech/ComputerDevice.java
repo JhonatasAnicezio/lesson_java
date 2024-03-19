@@ -1,7 +1,7 @@
 package com.betrybe.tech;
 
 public abstract class ComputerDevice {
-  private String brand;
+  private final String brand;
   private double storageCapacity;
 
   public ComputerDevice(String brand, double storageCapacity) {
