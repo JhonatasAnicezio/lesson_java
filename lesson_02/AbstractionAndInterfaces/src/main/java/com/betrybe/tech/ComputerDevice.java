@@ -1,5 +1,5 @@
 package com.betrybe.tech;
 
-public class ComputerDevice {
+public abstract class ComputerDevice {
 
 }
