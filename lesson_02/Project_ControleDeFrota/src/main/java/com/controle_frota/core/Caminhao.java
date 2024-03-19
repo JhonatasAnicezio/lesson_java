@@ -14,6 +14,6 @@ public class Caminhao extends Veiculo implements Transportador {
 
   @Override
   public String transportar(String origem, String destino) {
-    return null;
+    return String.format("Veiculo de placa %s, vai tranportar carda de %s a %s", this.getPlaca(), origem, destino);
   }
 }
