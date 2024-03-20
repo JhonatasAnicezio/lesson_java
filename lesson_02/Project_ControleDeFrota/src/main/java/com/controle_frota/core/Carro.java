@@ -8,6 +8,6 @@ public class Carro extends Veiculo {
   }
   @Override
   public void abastecer(String local, String motorista, double valor) {
-    this.getAbastecimento().add(String.format("Local: %s, Motorista: %s, Valor: %d", local, motorista, valor));
+    this.getAbastecimento().add(String.format("Local: %s, Motorista: %s, Valor: %.2f", local, motorista, valor));
   }
 }
