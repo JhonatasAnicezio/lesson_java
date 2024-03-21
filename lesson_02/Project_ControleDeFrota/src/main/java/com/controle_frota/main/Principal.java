@@ -19,5 +19,7 @@ public class Principal {
 
     c1.listAbastecimento();
     c2.listAbastecimento();
+
+    System.out.println("Projeto finalizado");
   }
 }
