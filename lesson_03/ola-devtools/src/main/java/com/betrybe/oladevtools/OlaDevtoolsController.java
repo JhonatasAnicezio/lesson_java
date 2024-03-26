@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class OlaDevtoolsController {
   @GetMapping
   public String hello() {
-    return "Olá, Dev tools";
+    return "Olá, Dev tools!!";
   }
 }
