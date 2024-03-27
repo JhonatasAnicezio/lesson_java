@@ -1,6 +1,8 @@
 package com.betrybe.podcastmanager.controller;
 
+import com.betrybe.podcastmanager.model.Podcast;
 import jakarta.websocket.server.PathParam;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +19,17 @@ public class PodcastController {
   }
 
   @GetMapping("/{id}")
-  public String getPodcast(@PathVariable int id) {
-    return "Você pediu pelo podcast de id: %d".formatted(id);
+  public ResponseEntity<Podcast> getPodcast(@PathVariable int id) {
+    if (id > 1000) {
+      return ResponseEntity.notFound().build();
+    }
+
+    Podcast podcast = new Podcast();
+    podcast.setId(id);
+    podcast.setName("Meu Podcast");
+    podcast.setUrl("http://meupodcast.com.br");
+
+    return ResponseEntity.ok(podcast);
   }
 
   @GetMapping("/search")
