@@ -1,6 +1,7 @@
 package com.betrybe.podcastmanager.service;
 
 import com.betrybe.podcastmanager.model.Podcast;
+import java.util.Random;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,5 +13,15 @@ public class PodcastService {
     podcast.setUrl("http://meupodcast.com.br");
 
     return podcast;
+  }
+
+  public Podcast savePodcast(Podcast newPodcast) {
+    Podcast savedPodcast = new Podcast();
+
+    savedPodcast.setId(new Random().nextLong(0, 1000));
+    savedPodcast.setName(newPodcast.getName());
+    savedPodcast.setUrl(newPodcast.getUrl());
+
+    return savedPodcast;
   }
 }
