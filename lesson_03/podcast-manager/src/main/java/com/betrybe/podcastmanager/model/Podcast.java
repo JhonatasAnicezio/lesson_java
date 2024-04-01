@@ -5,6 +5,8 @@ public class Podcast {
   private String name;
   private String url;
 
+  private String scretToken;
+
   public long getId() {
     return id;
   }
