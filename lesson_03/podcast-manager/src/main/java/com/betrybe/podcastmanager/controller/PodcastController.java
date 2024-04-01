@@ -1,5 +1,6 @@
 package com.betrybe.podcastmanager.controller;
 
+import com.betrybe.podcastmanager.Dto.PodcastCreationDto;
 import com.betrybe.podcastmanager.Dto.PodcastDto;
 import com.betrybe.podcastmanager.model.Podcast;
 import com.betrybe.podcastmanager.service.PodcastService;
@@ -46,10 +47,20 @@ public class PodcastController {
   }
 
   @PostMapping
-  public ResponseEntity<Podcast> createPodcast(@RequestBody Podcast newPodcast) {
+  public ResponseEntity<PodcastDto> createPodcast(@RequestBody PodcastCreationDto podcastCreationDto) {
+    Podcast newPodcast = new Podcast();
+    newPodcast.setName(podcastCreationDto.name());
+    newPodcast.setUrl(podcastCreationDto.url());
+
     Podcast savedPodcast = podcastService.savePodcast(newPodcast);
 
-    return ResponseEntity.status(HttpStatus.CREATED).body(savedPodcast);
+    PodcastDto podcastDto = new PodcastDto(
+        savedPodcast.getId(),
+        savedPodcast.getName(),
+        savedPodcast.getUrl()
+    );
+
+    return ResponseEntity.status(HttpStatus.CREATED).body(podcastDto);
   }
 
   @GetMapping("/search")
