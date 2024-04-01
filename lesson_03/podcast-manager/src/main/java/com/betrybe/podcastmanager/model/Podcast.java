@@ -30,4 +30,12 @@ public class Podcast {
   public void setUrl(String url) {
     this.url = url;
   }
+
+  public String getScretToken() {
+    return scretToken;
+  }
+
+  public void setScretToken(String scretToken) {
+    this.scretToken = scretToken;
+  }
 }
