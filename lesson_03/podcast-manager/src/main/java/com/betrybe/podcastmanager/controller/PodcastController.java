@@ -1,5 +1,6 @@
 package com.betrybe.podcastmanager.controller;
 
+import com.betrybe.podcastmanager.Dto.PodcastDto;
 import com.betrybe.podcastmanager.model.Podcast;
 import com.betrybe.podcastmanager.service.PodcastService;
 import jakarta.websocket.server.PathParam;
@@ -30,17 +31,18 @@ public class PodcastController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Podcast> getPodcast(@PathVariable int id) {
+  public ResponseEntity<PodcastDto> getPodcast(@PathVariable int id) {
     if (id > 1000) {
       return ResponseEntity.notFound().build();
     }
 
-    Podcast podcast = new Podcast();
-    podcast.setId(id);
-    podcast.setName("Meu Podcast");
-    podcast.setUrl("http://meupodcast.com.br");
+    Podcast podcast = podcastService.findPodcastById(id);
 
-    return ResponseEntity.ok(podcast);
+    PodcastDto podcastDto = new PodcastDto(
+        podcast.getId(), podcast.getName(), podcast.getUrl()
+    );
+
+    return ResponseEntity.ok(podcastDto);
   }
 
   @PostMapping
