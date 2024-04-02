@@ -21,6 +21,8 @@ public class SerializationExample {
         podcast.getUrl()
     );
 
+    System.out.println("Finish API");
+
     ObjectMapper mapper = new ObjectMapper();
     String json = mapper.writeValueAsString(podcastDto);
     System.out.println(json);
