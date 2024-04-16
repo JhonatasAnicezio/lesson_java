@@ -1,4 +1,4 @@
-package com.betrybe.APTRest;
+package com.betrybe.healthproviders;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

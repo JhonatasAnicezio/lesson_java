@@ -1,4 +1,4 @@
-package com.betrybe.APTRest;
+package com.betrybe.healthproviders;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
