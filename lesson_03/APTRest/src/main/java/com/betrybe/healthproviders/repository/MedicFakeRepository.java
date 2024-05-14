@@ -1,13 +1,16 @@
 package com.betrybe.healthproviders.repository;
 
 import com.betrybe.healthproviders.entity.Medic;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class MedicFakeRepository {
+
     private static final Map<Long, Medic> MEDICS = new HashMap<>();
 
     static {
