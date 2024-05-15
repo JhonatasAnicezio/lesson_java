@@ -19,4 +19,8 @@ public class MedicService {
     public List<Medic> getAllMedics() {
         return medicFakeRepository.getAllMedics();
     }
+
+    public Medic getMedicById(Long id) {
+        return medicFakeRepository.getMedic(id);
+    }
 }
