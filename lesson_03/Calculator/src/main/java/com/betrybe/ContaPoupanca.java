@@ -7,4 +7,13 @@ public class ContaPoupanca {
     this.saldo += valor;
     return valor;
   }
+
+  public int sacar(int valor) {
+    this.saldo -= valor;
+    return saldo;
+  }
+
+  public int verSaldo() {
+    return this.saldo;
+  }
 }
