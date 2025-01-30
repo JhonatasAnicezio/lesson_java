@@ -41,7 +41,7 @@ public class ProductController {
         .body(ProductDto.fromEntity(productService.create(productCreationDto.toEntity())));
   }
 
-  @PutMapping
+  @PutMapping("/{id}")
   public ResponseEntity<ProductDto> update(
       @PathVariable Long id,
       @RequestBody ProductCreationDto productCreationDto
