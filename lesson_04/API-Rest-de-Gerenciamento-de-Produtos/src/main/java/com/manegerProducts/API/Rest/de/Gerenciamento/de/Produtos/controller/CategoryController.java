@@ -1,5 +1,7 @@
 package com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.controller;
 
+import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.controller.dto.CategoryCreationDto;
+import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.controller.dto.CategoryDto;
 import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.entity.Category;
 import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.service.CategoryService;
 import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.service.exception.CategoryNotFoundException;
@@ -22,35 +24,37 @@ public class CategoryController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Category> findById(@PathVariable Long id) throws CategoryNotFoundException {
+  public ResponseEntity<CategoryDto> findById(@PathVariable Long id) throws CategoryNotFoundException {
     return ResponseEntity.status(HttpStatus.OK)
-        .body(categoryService.findById(id));
+        .body(CategoryDto.fromEntity(categoryService.findById(id)));
   }
 
   @GetMapping
-  public ResponseEntity<List<Category>> findAll() {
+  public ResponseEntity<List<CategoryDto>> findAll() {
     return ResponseEntity.status(HttpStatus.OK)
-        .body(categoryService.findAll());
+        .body(categoryService.findAll().stream()
+            .map(CategoryDto::fromEntity)
+            .toList());
   }
 
   @PostMapping
-  public ResponseEntity<Category> create(@RequestBody Category category) {
+  public ResponseEntity<CategoryDto> create(@RequestBody CategoryCreationDto categoryCreationDto) {
     return ResponseEntity.status(HttpStatus.CREATED)
-        .body(categoryService.create(category));
+        .body(CategoryDto.fromEntity(categoryService.create(categoryCreationDto.toEntity())));
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Category> update(
+  public ResponseEntity<CategoryDto> update(
       @PathVariable Long id,
-      @RequestBody Category category
+      @RequestBody CategoryCreationDto categoryCreationDto
   ) throws CategoryNotFoundException {
     return ResponseEntity.status(HttpStatus.OK)
-        .body(categoryService.update(id, category));
+        .body(CategoryDto.fromEntity(categoryService.update(id, categoryCreationDto.toEntity())));
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Category> delete(@PathVariable Long id) throws CategoryNotFoundException {
+  public ResponseEntity<CategoryDto> delete(@PathVariable Long id) throws CategoryNotFoundException {
     return ResponseEntity.status(HttpStatus.OK)
-        .body(categoryService.delete(id));
+        .body(CategoryDto.fromEntity(categoryService.delete(id)));
   }
 }
