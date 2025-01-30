@@ -1,5 +1,7 @@
 package com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.controller;
 
+import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.controller.dto.BrandCreationDto;
+import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.controller.dto.BrandDto;
 import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.entity.Brand;
 import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.service.BrandService;
 import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.service.exception.BrandNotFoundException;
@@ -21,35 +23,37 @@ public class BrandController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Brand> findById(@PathVariable Long id) throws BrandNotFoundException {
+  public ResponseEntity<BrandDto> findById(@PathVariable Long id) throws BrandNotFoundException {
     return ResponseEntity.status(HttpStatus.OK)
-        .body(brandService.findById(id));
+        .body(BrandDto.fromEntity(brandService.findById(id)));
   }
 
   @GetMapping
-  public ResponseEntity<List<Brand>> findAll() {
+  public ResponseEntity<List<BrandDto>> findAll() {
     return ResponseEntity.status(HttpStatus.OK)
-        .body(brandService.findAll());
+        .body(brandService.findAll().stream()
+            .map(BrandDto::fromEntity)
+            .toList());
   }
 
   @PostMapping
-  public ResponseEntity<Brand> create(@RequestBody Brand brand) {
+  public ResponseEntity<BrandDto> create(@RequestBody BrandCreationDto brandCreationDto) {
     return ResponseEntity.status(HttpStatus.CREATED)
-        .body(brandService.create(brand));
+        .body(BrandDto.fromEntity(brandService.create(brandCreationDto.toEntity())));
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Brand> update(
+  public ResponseEntity<BrandDto> update(
       @PathVariable Long id,
-      @RequestBody Brand brand
+      @RequestBody BrandCreationDto brandCreationDto
   ) throws BrandNotFoundException {
     return ResponseEntity.status((HttpStatus.OK))
-        .body(brandService.update(id, brand));
+        .body(BrandDto.fromEntity(brandService.update(id, brandCreationDto.toEntity())));
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Brand> delete(@PathVariable Long id) throws BrandNotFoundException {
+  public ResponseEntity<BrandDto> delete(@PathVariable Long id) throws BrandNotFoundException {
     return ResponseEntity.status(HttpStatus.OK)
-        .body(brandService.delete(id));
+        .body(BrandDto.fromEntity(brandService.delete(id)));
   }
 }
