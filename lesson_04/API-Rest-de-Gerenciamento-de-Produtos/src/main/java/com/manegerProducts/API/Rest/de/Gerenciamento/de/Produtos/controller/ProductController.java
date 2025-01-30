@@ -1,5 +1,7 @@
 package com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.controller;
 
+import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.controller.dto.ProductCreationDto;
+import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.controller.dto.ProductDto;
 import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.entity.Product;
 import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.service.ProductService;
 import com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.service.exception.ProductNotFoundException;
@@ -20,35 +22,37 @@ public class ProductController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Product> findById(@PathVariable Long id) throws ProductNotFoundException {
+  public ResponseEntity<ProductDto> findById(@PathVariable Long id) throws ProductNotFoundException {
     return ResponseEntity.status(HttpStatus.OK)
-        .body(productService.findById(id));
+        .body(ProductDto.fromEntity(productService.findById(id)));
   }
 
   @GetMapping
-  public ResponseEntity<List<Product>> findAll() {
+  public ResponseEntity<List<ProductDto>> findAll() {
     return ResponseEntity.status(HttpStatus.OK)
-        .body(productService.findByAll());
+        .body(productService.findByAll().stream()
+            .map(ProductDto::fromEntity)
+            .toList());
   }
 
   @PostMapping
-  public ResponseEntity<Product> create(@RequestBody Product product) {
+  public ResponseEntity<ProductDto> create(@RequestBody ProductCreationDto productCreationDto) {
     return ResponseEntity.status(HttpStatus.CREATED)
-        .body(productService.create(product));
+        .body(ProductDto.fromEntity(productService.create(productCreationDto.toEntity())));
   }
 
   @PutMapping
-  public ResponseEntity<Product> update(
+  public ResponseEntity<ProductDto> update(
       @PathVariable Long id,
-      @RequestBody Product product
+      @RequestBody ProductCreationDto productCreationDto
   ) throws ProductNotFoundException {
     return ResponseEntity.status(HttpStatus.OK)
-        .body(productService.update(id, product));
+        .body(ProductDto.fromEntity(productService.update(id, productCreationDto.toEntity())));
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Product> delete(@PathVariable Long id) throws ProductNotFoundException {
+  public ResponseEntity<ProductDto> delete(@PathVariable Long id) throws ProductNotFoundException {
     return ResponseEntity.status(HttpStatus.OK)
-        .body(productService.delete(id));
+        .body(ProductDto.fromEntity(productService.delete(id)));
   }
 }
