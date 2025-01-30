@@ -1,20 +1,20 @@
-package entity;
+package com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.entity;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "categories")
-public class Category {
+@Table(name = "brands")
+public class Brand {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String name;
 
-  public Category() {
+  public Brand() {
   }
 
-  public Category(String name) {
+  public Brand(String name) {
     this.name = name;
   }
 

@@ -1,21 +1,23 @@
-package entity;
+package com.manegerProducts.API.Rest.de.Gerenciamento.de.Produtos.entity;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "brands")
-public class Brand {
+@Table(name = "products")
+public class Product {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String name;
+  private double price;
 
-  public Brand() {
+  public Product() {
   }
 
-  public Brand(String name) {
+  public Product(String name, double price) {
     this.name = name;
+    this.price = price;
   }
 
   public Long getId() {
@@ -32,5 +34,13 @@ public class Brand {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public double getPrice() {
+    return price;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
   }
 }
