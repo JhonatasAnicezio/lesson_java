@@ -2,10 +2,12 @@ package com.beTrybe.alexandria.service;
 
 import com.beTrybe.alexandria.entity.Book;
 import com.beTrybe.alexandria.entity.BookDetails;
+import com.beTrybe.alexandria.entity.Publisher;
 import com.beTrybe.alexandria.repository.BookDetailsRepository;
 import com.beTrybe.alexandria.repository.BookRepository;
 import com.beTrybe.alexandria.service.exception.BookDetailsNotFoundException;
 import com.beTrybe.alexandria.service.exception.BookNotFoundException;
+import com.beTrybe.alexandria.service.exception.PublisherNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,13 @@ import java.util.Optional;
 public class BookService {
   private final BookRepository bookRepository;
   private final BookDetailsRepository bookDetailsRepository;
+  private final PublisherService publisherService;
 
   @Autowired
-  public BookService(BookRepository bookRepository, BookDetailsRepository bookDetailsRepository) {
+  public BookService(BookRepository bookRepository, BookDetailsRepository bookDetailsRepository, PublisherService publisherService) {
     this.bookRepository = bookRepository;
     this.bookDetailsRepository = bookDetailsRepository;
+    this.publisherService = publisherService;
   }
 
   public Book findById(Long id) throws BookNotFoundException {
@@ -91,5 +95,23 @@ public class BookService {
     bookDetailsRepository.delete(bookDetails);
 
     return bookDetails;
+  }
+
+  public Book setBookPublisher(Long bookId, Long publisherId)
+      throws BookNotFoundException, PublisherNotFoundException {
+    Book book = findById(bookId);
+    Publisher publisher = publisherService.findById(publisherId);
+
+    book.setPublisher(publisher);
+
+    return bookRepository.save(book);
+  }
+
+  public Book removeBookPublisher(Long bookId) throws BookNotFoundException {
+    Book book = findById(bookId);
+
+    book.setPublisher(null);
+
+    return bookRepository.save(book);
   }
 }

@@ -2,11 +2,14 @@ package com.beTrybe.alexandria.controller;
 
 
 import com.beTrybe.alexandria.controller.dto.BookCreationDto;
+import com.beTrybe.alexandria.controller.dto.BookDetailCreationDto;
+import com.beTrybe.alexandria.controller.dto.BookDetailDto;
 import com.beTrybe.alexandria.controller.dto.BookDto;
 import com.beTrybe.alexandria.entity.Book;
 import com.beTrybe.alexandria.service.BookService;
 import com.beTrybe.alexandria.service.exception.BookDetailsNotFoundException;
 import com.beTrybe.alexandria.service.exception.BookNotFoundException;
+import com.beTrybe.alexandria.service.exception.PublisherNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -82,7 +85,7 @@ public class BookController {
   @PutMapping("/{bookId}/detail")
   public BookDetailDto updateBookDetail(@PathVariable Long bookId,
                                         @RequestBody BookDetailCreationDto bookDetailCreationDto)
-      throws BookDetailNotFoundException, BookNotFoundException {
+      throws BookDetailsNotFoundException, BookNotFoundException {
     return BookDetailDto.fromEntity(
         bookService.updateBookDetails(bookId, bookDetailCreationDto.toEntity())
     );
@@ -90,9 +93,24 @@ public class BookController {
 
   @DeleteMapping("/{bookId}/detail")
   public BookDetailDto removeBookDetail(@PathVariable Long bookId)
-      throws BookDetailNotFoundException, BookNotFoundException {
+      throws BookDetailsNotFoundException, BookNotFoundException {
     return BookDetailDto.fromEntity(
-        bookService.removeBookDetail(bookId)
+        bookService.deleteBookDetails(bookId)
+    );
+  }
+
+  @PutMapping("/{bookId}/publisher/{publisherId}")
+  public BookDto setBookPublisher(@PathVariable Long bookId,
+                                  @PathVariable Long publisherId) throws BookNotFoundException, PublisherNotFoundException {
+    return BookDto.fromEntity(
+        bookService.setBookPublisher(bookId, publisherId)
+    );
+  }
+
+  @DeleteMapping("/{bookId}/publisher")
+  public BookDto removeBookPublisher(@PathVariable Long bookId) throws BookNotFoundException {
+    return BookDto.fromEntity(
+        bookService.removeBookPublisher(bookId)
     );
   }
 }
