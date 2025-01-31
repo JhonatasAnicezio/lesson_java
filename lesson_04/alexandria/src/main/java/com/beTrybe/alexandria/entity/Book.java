@@ -47,4 +47,12 @@ public class Book {
   public void setGenre(String genre) {
     this.genre = genre;
   }
+
+  public BookDetails getBookDetails() {
+    return bookDetails;
+  }
+
+  public void setBookDetails(BookDetails bookDetails) {
+    this.bookDetails = bookDetails;
+  }
 }
