@@ -2,11 +2,14 @@ package com.beTrybe.alexandria.controller.dto;
 
 import com.beTrybe.alexandria.entity.Book;
 
+import java.util.List;
+
 public record BookDto(
     Long id,
     String title,
     String genre,
-    PublisherDto publisher
+    PublisherDto publisher,
+    List<AuthorDto> authors
 ) {
 
   public static BookDto fromEntity(Book book) {
@@ -17,7 +20,10 @@ public record BookDto(
         book.getId(),
         book.getTitle(),
         book.getGenre(),
-        publisherDto
+        publisherDto,
+        book.getAuthors().stream()
+            .map(AuthorDto::fromEntity)
+            .toList()
     );
   }
 
