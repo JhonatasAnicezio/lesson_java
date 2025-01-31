@@ -69,7 +69,7 @@ public class BookService {
     return bookDetails.orElseThrow(BookDetailsNotFoundException::new);
   }
 
-  public BookDetails update(Long bookId, BookDetails bookDetails) throws BookNotFoundException, BookDetailsNotFoundException {
+  public BookDetails updateBookDetails(Long bookId, BookDetails bookDetails) throws BookNotFoundException, BookDetailsNotFoundException {
     BookDetails bookDetailFromDb = findBookDetails(bookId);
 
     bookDetailFromDb.setSummary(bookDetails.getSummary());
