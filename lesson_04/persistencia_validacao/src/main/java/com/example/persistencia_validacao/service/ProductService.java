@@ -6,6 +6,7 @@ import com.example.persistencia_validacao.service.exception.ProductNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -45,5 +46,24 @@ public class ProductService {
     productRepository.deleteById(id);
 
     return product;
+  }
+
+  public List<Product> findExpiredProducts() {
+    return productRepository.findAll().stream()
+        .filter(product -> product.getExpirationDate().isBefore(LocalDate.now()))
+        .toList();
+  }
+
+  public List<Product> findNonExpiredProducts() {
+    return productRepository.findAll().stream()
+        .filter(product -> product.getExpirationDate().isAfter(LocalDate.now()))
+        .toList();
+  }
+
+  public List<Product> findExpiresAtProducts(LocalDate start, LocalDate end) {
+    return productRepository.findAll().stream()
+        .filter(product -> product.getExpirationDate().isAfter(start.minusDays(1))
+                && product.getExpirationDate().isBefore(end.plusDays(1)))
+        .toList();
   }
 }

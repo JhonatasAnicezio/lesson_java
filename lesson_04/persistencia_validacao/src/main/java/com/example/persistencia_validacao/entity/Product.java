@@ -1,6 +1,7 @@
 package com.example.persistencia_validacao.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
@@ -11,8 +12,16 @@ public class Product {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotBlank(message = "Name is required")
+  @Size(min = 2, max = 50, message = "Tamanho ta muito estranho")
   private String name;
+
+  @NotBlank(message = "Manufacture Date is required")
+  @PastOrPresent(message = "Data de criação invalida")
   private LocalDate manufactureDate;
+
+  @NotBlank(message = "Expiration Date is required")
+  @Future(message = "Data de validade incorreta")
   private LocalDate expirationDate;
 
   public Product() {

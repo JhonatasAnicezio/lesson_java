@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -50,5 +51,26 @@ public class ProductController {
   public ResponseEntity<Product> delete(@PathVariable Long id) throws ProductNotFound {
     return ResponseEntity.status(HttpStatus.OK)
         .body(productService.delete(id));
+  }
+
+  @GetMapping("/expired")
+  public ResponseEntity<List<Product>> findExpired() {
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(productService.findExpiredProducts());
+  }
+
+  @GetMapping("/non-expired")
+  public ResponseEntity<List<Product>> findAtExpired() {
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(productService.findNonExpiredProducts());
+  }
+
+  @GetMapping("/at-expired")
+  public ResponseEntity<List<Product>> findAtExpired(
+      @RequestBody LocalDate start,
+      @RequestBody LocalDate end
+  ) {
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(productService.findExpiresAtProducts(start, end));
   }
 }
