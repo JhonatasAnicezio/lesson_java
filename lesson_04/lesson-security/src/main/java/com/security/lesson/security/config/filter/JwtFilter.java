@@ -49,14 +49,14 @@ public class JwtFilter extends OncePerRequestFilter {
   }
 
   private Optional<String> extractToken(HttpServletRequest request) {
-    String authorization = request.getHeader("Authorization");
+    Optional<String> authorization = Optional.ofNullable(request.getHeader("Authorization"));
 
-    if(authorization == null) {
+    if(authorization.isEmpty()) {
       return Optional.empty();
     }
 
     return Optional.of(
-        authorization.replace("Bearer", "")
+        authorization.get().replace("Bearer", "")
     );
   }
 }
