@@ -2,6 +2,7 @@ package com.security.lesson.security.model.entity;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -16,19 +17,22 @@ public class Person implements UserDetails {
 
   @Column(unique = true)
   private String username;
+
   private String password;
+  private String role;
 
   public Person() {
   }
 
-  public Person(String username, String password) {
+  public Person(String username, String password, String role) {
     this.password = password;
     this.username = username;
+    this.role = role;
   }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return List.of();
+    return List.of(new SimpleGrantedAuthority(role));
   }
 
   @Override
@@ -55,5 +59,13 @@ public class Person implements UserDetails {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public String getRole() {
+    return role;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
   }
 }
