@@ -8,6 +8,7 @@ public class LessonSecurityApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LessonSecurityApplication.class, args);
+		System.out.println("Finish Couse Java !!!");
 	}
 
 }
